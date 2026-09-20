@@ -16,3 +16,5 @@ pnpm-debug.log*
 dist/
 build/
 coverage/
+
+test/tmp-*.json

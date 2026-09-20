@@ -1,0 +1,126 @@
+{
+  "batches": [
+    {
+      "code": "EB-001",
+      "chemicalBatch": "B-0620",
+      "plateSize": "18x24cm",
+      "exposureMinutes": 8,
+      "waterSource": "井水过滤",
+      "developResult": "合格",
+      "operator": "周师傅",
+      "box": "蓝盒A-03",
+      "statusStored": "已入盒",
+      "conclusionValid": true,
+      "invalidReason": "",
+      "reviews": [
+        {
+          "id": "R-1",
+          "at": "2026-06-20T02:10:00.000Z",
+          "densityOk": true,
+          "edgeEven": true,
+          "confirmer": "林复核",
+          "reviewer": "周师傅",
+          "note": "复晒第1次"
+        },
+        {
+          "id": "R-2",
+          "at": "2026-06-20T02:30:00.000Z",
+          "densityOk": true,
+          "edgeEven": true,
+          "confirmer": "林复核",
+          "reviewer": "周师傅",
+          "note": "复晒第2次，连续合格，入盒"
+        }
+      ],
+      "logs": [
+        {
+          "at": "2026-06-19T08:00:00.000Z",
+          "step": "建档",
+          "note": "药液 B-0620 建档"
+        },
+        {
+          "at": "2026-06-20T02:35:00.000Z",
+          "step": "入盒",
+          "note": "入盒 蓝盒A-03"
+        }
+      ]
+    },
+    {
+      "code": "EB-002",
+      "chemicalBatch": "B-0621",
+      "plateSize": "20x30cm",
+      "exposureMinutes": 10,
+      "waterSource": "雨水沉淀",
+      "developResult": "不合格",
+      "operator": "陈晒工",
+      "box": "",
+      "statusStored": "待复核",
+      "conclusionValid": true,
+      "invalidReason": "",
+      "reviews": [],
+      "logs": [
+        {
+          "at": "2026-06-21T01:00:00.000Z",
+          "step": "建档",
+          "note": "药液 B-0621 建档，等待复晒复核"
+        }
+      ]
+    },
+    {
+      "code": "EB-003",
+      "chemicalBatch": "B-0598",
+      "plateSize": "13x18cm",
+      "exposureMinutes": 12,
+      "waterSource": "山泉水",
+      "developResult": "合格",
+      "operator": "周师傅",
+      "box": "蓝盒B-11",
+      "statusStored": "已入盒",
+      "conclusionValid": false,
+      "invalidReason": "冲洗水源由「山泉水」改为「井水过滤」",
+      "reviews": [
+        {
+          "id": "R-1",
+          "at": "2026-06-18T05:00:00.000Z",
+          "densityOk": true,
+          "edgeEven": true,
+          "confirmer": "林复核",
+          "reviewer": "周师傅",
+          "note": "复晒第1次"
+        },
+        {
+          "id": "R-2",
+          "at": "2026-06-18T05:20:00.000Z",
+          "densityOk": true,
+          "edgeEven": true,
+          "confirmer": "林复核",
+          "reviewer": "周师傅",
+          "note": "复晒第2次，入盒"
+        },
+        {
+          "id": "R-3",
+          "at": "2026-06-22T01:00:00.000Z",
+          "invalidation": true,
+          "densityOk": null,
+          "edgeEven": null,
+          "confirmer": "",
+          "reviewer": "周师傅",
+          "note": "水源变化，结论失效"
+        }
+      ],
+      "logs": [
+        {
+          "at": "2026-06-18T05:25:00.000Z",
+          "step": "入盒",
+          "note": "入盒 蓝盒B-11"
+        },
+        {
+          "at": "2026-06-22T01:00:00.000Z",
+          "step": "显影失效",
+          "note": "已入盒，标记受影响：冲洗水源由「山泉水」改为「井水过滤」（操作人：周师傅）"
+        }
+      ],
+      "affectedAt": "2026-06-22T01:00:00.000Z"
+    }
+  ]
+}
