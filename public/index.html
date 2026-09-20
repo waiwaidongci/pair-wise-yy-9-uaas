@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>古法蓝晒 · 曝光批次与冲洗联审台</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>古法蓝晒 · 曝光批次与冲洗联审台</h1>
+      <div class="meta">药液批次互斥 · 显影联审 · 复晒双合格入盒 · 水源/补时变更追溯</div>
+    </div>
+    <button id="reload">刷新</button>
+  </header>
+
+  <div id="flash" class="flash" hidden></div>
+
+  <main>
+    <section class="forms">
+      <form id="submitForm" class="panel">
+        <h2>提交曝光批次</h2>
+        <p class="hint">同一药液批次只服务一个未结束曝光批次；尺寸、时长、水源、显影结果缺项不可提交。</p>
+        <label>药液批次 <input name="chemicalBatch" required placeholder="如 B-0920-A"></label>
+        <label>玻璃板尺寸 <input name="plateSize" required placeholder="如 18x24cm"></label>
+        <label>曝光时长（分钟） <input name="exposureMinutes" type="number" min="1" step="1" required></label>
+        <label>冲洗水源 <input name="waterSource" required placeholder="如 井水过滤"></label>
+        <label>操作员 <input name="operator" required placeholder="建档操作员"></label>
+        <div class="row">
+          <label>显影密度
+            <select name="density"><option value="合格">合格</option><option value="不合格">不合格</option></select>
+          </label>
+          <label>边缘情况
+            <select name="edge"><option value="均匀">均匀</option><option value="边缘不均">边缘不均</option></select>
+          </label>
+        </div>
+        <label>显影备注 <input name="developNote" placeholder="可选"></label>
+        <button>提交批次</button>
+      </form>
+
+      <form id="reviewForm" class="panel">
+        <h2>冲洗联审</h2>
+        <label>曝光批次
+          <select name="id" class="batchSelect" data-filter="unended"></select>
+        </label>
+        <label>复核人 <input name="reviewer" required placeholder="须为另一人复核"></label>
+        <label>结论
+          <select name="decision"><option value="通过">通过（可入盒）</option><option value="退回">退回复核</option></select>
+        </label>
+        <label>理由 <input name="reason" placeholder="可选"></label>
+        <button>提交联审</button>
+      </form>
+
+      <form id="changeForm" class="panel">
+        <h2>变更 / 补时 / 换水源</h2>
+        <p class="hint">水源变化或曝光补时会让显影结论失效：未入盒退回复核，已入盒标记受影响。</p>
+        <label>曝光批次 <select name="id" class="batchSelect" data-filter="unended"></select></label>
+        <div class="row">
+          <label>新药液批次 <input name="chemicalBatch" placeholder="留空不改"></label>
+          <label>新时长（分钟） <input name="exposureMinutes" type="number" min="1" step="1" placeholder="补时填更大值"></label>
+        </div>
+        <label>新水源 <input name="waterSource" placeholder="留空不改"></label>
+        <div class="row">
+          <label>新密度 <select name="density"><option value="">不改</option><option value="合格">合格</option><option value="不合格">不合格</option></select></label>
+          <label>新边缘 <select name="edge"><option value="">不改</option><option value="均匀">均匀</option><option value="边缘不均">边缘不均</option></select></label>
+        </div>
+        <button>提交变更</button>
+      </form>
+
+      <form id="resunForm" class="panel">
+        <h2>复晒记录</h2>
+        <p class="hint">复晒须操作人之外的另一人确认；连续两次密度合格且无边缘不均才可入盒。重复或并发提交沿用首次记录。</p>
+        <label>曝光批次 <select name="id" class="batchSelect" data-filter="unended"></select></label>
+        <div class="row">
+          <label>复晒操作人 <input name="operator" required></label>
+          <label>另一人确认 <input name="confirmer" required placeholder="必须不同于操作人"></label>
+        </div>
+        <div class="row">
+          <label>复晒密度 <select name="density"><option value="合格">合格</option><option value="不合格">不合格</option></select></label>
+          <label>边缘情况 <select name="edge"><option value="均匀">均匀</option><option value="边缘不均">边缘不均</option></select></label>
+        </div>
+        <label>备注 <input name="note" placeholder="可选"></label>
+        <button>提交复晒</button>
+      </form>
+
+      <form id="boxForm" class="panel">
+        <h2>入盒 / 结束</h2>
+        <label>曝光批次 <select name="id" class="batchSelect" data-filter="unended"></select></label>
+        <label>盒位 <input name="box" required placeholder="如 蓝盒A-03"></label>
+        <div class="row">
+          <button>入盒</button>
+          <button type="button" class="secondary" id="endBtn">结束已入盒批次（释放药液）</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="board">
+      <div class="stats" id="stats"></div>
+      <div class="toolbar">
+        <select id="statusFilter">
+          <option value="">全部状态</option>
+        </select>
+        <input id="search" placeholder="搜索批次号、药液、水源、盒位…">
+      </div>
+      <div class="panel">
+        <h2>批次卡片</h2>
+        <div class="grid" id="cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/public/app.js"></script>
+</body>
+</html>

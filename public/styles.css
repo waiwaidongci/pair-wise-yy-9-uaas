@@ -1,0 +1,136 @@
+:root {
+  --bg: #eef1ea;
+  --panel: #fff;
+  --ink: #20241f;
+  --muted: #687066;
+  --line: #d4ddd0;
+  --accent: #526f43;
+  --accent-dark: #3f5733;
+  --warn: #9b4937;
+  --warn-bg: #f7e9e5;
+  --ok: #3f6b50;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+header {
+  padding: 20px 28px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+h1 { margin: 0 0 4px; font-size: 24px; }
+h2 { margin: 0 0 10px; font-size: 17px; }
+.meta { color: var(--muted); font-size: 13px; }
+main {
+  display: grid;
+  grid-template-columns: 390px 1fr;
+  gap: 20px;
+  padding: 20px 28px;
+  align-items: start;
+}
+.forms { display: grid; gap: 14px; }
+.panel, .card, .stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 15px;
+}
+.panel h2 { color: var(--accent-dark); }
+.hint { margin: 0 0 10px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+label { display: block; margin: 9px 0 4px; color: var(--muted); font-size: 12px; }
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 9px;
+  font: inherit;
+  background: #fff;
+}
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.row > label { margin-top: 0; }
+form .row:last-child { margin-top: 10px; align-items: end; }
+button {
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover { background: var(--accent-dark); }
+button.secondary { background: #69736a; }
+.flash {
+  margin: 14px 28px 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  border: 1px solid var(--line);
+}
+.flash.error { background: var(--warn-bg); color: var(--warn); border-color: #e0b6ab; }
+.flash.success { background: #e8f1e4; color: var(--ok); border-color: #bcd1ae; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.stat strong { display: block; font-size: 23px; margin-top: 2px; }
+.stat.affected strong { color: var(--warn); }
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.toolbar select, .toolbar input { width: auto; min-width: 170px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.card { display: grid; gap: 7px; align-content: start; }
+.card h3 { margin: 0; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pill {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pill.复核中 { background: #f3efe3; color: #856a25; }
+.pill.待入盒 { background: #e6efe3; color: var(--ok); }
+.pill.已入盒 { background: #e7eef5; color: #35567a; }
+.pill.已结束 { background: #ececea; color: #666; }
+.badge-affected {
+  background: var(--warn-bg);
+  color: var(--warn);
+  border-color: #e0b6ab;
+  font-weight: 700;
+}
+.badge-invalid { background: #fdf3e0; color: #8f6420; border-color: #e7cd9a; }
+.kv { font-size: 13px; display: grid; grid-template-columns: 86px 1fr; gap: 4px; }
+.kv b { color: var(--muted); font-weight: 400; }
+.gate { font-size: 12px; padding: 7px 9px; border-radius: 6px; }
+.gate.ok { background: #e8f1e4; color: var(--ok); }
+.gate.no { background: #f5f1e8; color: #7a5c1f; }
+.result-bad { color: var(--warn); font-weight: 700; }
+.streak { color: var(--muted); font-size: 12px; }
+.logs {
+  border-top: 1px dashed var(--line);
+  padding-top: 7px;
+  max-height: 132px;
+  overflow: auto;
+  font-size: 12px;
+  color: var(--muted);
+  display: grid;
+  gap: 3px;
+}
+.logs b { color: var(--ink); font-weight: 700; }
+@media (max-width: 960px) {
+  header { display: block; padding: 16px; }
+  header button { margin-top: 10px; }
+  main { grid-template-columns: 1fr; padding: 14px; }
+  .flash { margin: 12px 14px 0; }
+}
